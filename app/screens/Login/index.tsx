@@ -4,13 +4,18 @@ import { View } from 'react-native';
 import { Text, Button, TextInput } from 'react-native-paper';
 import * as yup from 'yup';
 import { Formik } from 'formik';
+import { useStore } from 'app/store';
 
 import styles from './styles';
-import NavigationService from 'app/navigation/NavigationService';
+// import NavigationService from 'app/navigation/NavigationService';
 import { useTheme } from 'react-native-paper';
 // import { useStore } from 'app/store';
 
-const Login: React.FC = () => {
+type Props = {
+  navigation: any;
+};
+
+const Login = ({ navigation }: Props) => {
   const inputStyle = {
     borderWidth: 1,
     borderColor: '#4e4e4e',
@@ -20,10 +25,11 @@ const Login: React.FC = () => {
   const { colors } = useTheme();
 
   const handleSubmit = () => {
-    NavigationService.navigate('Home');
+    setIsLoggedIn(true);
+    navigation.navigate('Home');
   };
 
-  // const setIsLoggedIn = useStore(state => state.setIsLoggedIn);
+  const setIsLoggedIn = useStore(state => state.setIsLoggedIn);
   return (
     <Formik
       initialValues={{
@@ -32,7 +38,7 @@ const Login: React.FC = () => {
         password: '',
       }}
       // eslint-disable-next-line react/destructuring-assignment
-      onSubmit={() => NavigationService.navigate('Home')}
+      onSubmit={() => navigation.navigate('Home')}
       validationSchema={yup.object().shape({
         name: yup.string().required('Please, provide your name!'),
         email: yup.string().email().required(),
