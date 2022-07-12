@@ -18,6 +18,11 @@ const Login: React.FC = () => {
     marginBottom: 5,
   };
   const { colors } = useTheme();
+
+  const handleSubmit = () => {
+    NavigationService.navigate('Home');
+  };
+
   // const setIsLoggedIn = useStore(state => state.setIsLoggedIn);
   return (
     <Formik
@@ -37,14 +42,7 @@ const Login: React.FC = () => {
           .max(10, 'Password should not excced 10 chars.')
           .required(),
       })}>
-      {({
-        values,
-        handleChange,
-        errors,
-        setFieldTouched,
-        touched,
-        handleSubmit,
-      }) => (
+      {({ values, handleChange, errors, setFieldTouched, touched }) => (
         <View style={styles.formContainer}>
           <TextInput
             value={values.name}
