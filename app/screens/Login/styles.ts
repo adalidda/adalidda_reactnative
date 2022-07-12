@@ -15,6 +15,9 @@ const styles = StyleSheet.create({
   labelStyle: {
     fontSize: 12,
   },
+  formContainer: {
+    padding: 50,
+  },
 });
 
 export default styles;
