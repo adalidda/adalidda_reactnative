@@ -1,0 +1,1 @@
+# adalidda_reactnative
